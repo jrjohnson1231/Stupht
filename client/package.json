@@ -6,9 +6,9 @@
   "author": "John Johnson",
   "license": "ISC",
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "gulp serve:full-stack",
     "lite": "lite-server",
-    "postinstall": "typings install",
+    "postinstall": "typings install && gulp build",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings"
@@ -40,6 +40,6 @@
     "systemjs": "0.19.27",
     "tslint": "^3.13.0",
     "typescript": "^1.8.10",
-    "typings": "^1.0.4"
+    "typings": "^1.0.4",
     "zone.js": "^0.6.12"
 }
