@@ -1,4 +1,5 @@
 class AuthorizeApiRequest
+  include JsonWebToken
   prepend SimpleCommand
 
   def initialize(headers = {})
