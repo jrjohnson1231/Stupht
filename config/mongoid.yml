@@ -115,7 +115,7 @@ development:
 
     # Raise an error when performing a #find and the document is not found.
     # (default: true)
-    # raise_not_found_error: true
+    raise_not_found_error: false
 
     # Raise an error when defining a scope with the same name as an
     # existing method. (default: false)
@@ -131,6 +131,7 @@ development:
     # environment. The Mongoid logger will be set to the Rails logger
     # otherwise.(default: :info)
     # log_level: :info
+
 test:
   clients:
     default:
@@ -141,3 +142,5 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+  options:
+    raise_not_found_error: false

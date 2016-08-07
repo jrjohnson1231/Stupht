@@ -4,7 +4,9 @@
     "dist/**/*.{html,htm,css,js}"
   ],
   "server": {
-    "baseDir": "dist"
+    "baseDir": "dist",
+    "middleware": [
+          "proxyMiddleware('/api', { target: 'http://localhost:' + port })"
+        ]
   }
-  
 }

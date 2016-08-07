@@ -3,6 +3,8 @@ class User
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
 
+  validates_uniqueness_of :email, message: 'Email already in use'
+
   field :name, type: String
   field :email, type: String
   field :password_digest, type: String
@@ -11,7 +13,7 @@ class User
   has_many :posts
 
   def serializable_hash(options={})
-    hash = super(options)
+    hash = super(options.merge({ except: [:password_digest]}))
     hash[:posts] = posts.inject([]) { |all, post| all << post.serializable_hash }
     hash
   end  

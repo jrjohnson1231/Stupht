@@ -7,7 +7,7 @@ class AuthenticateUser
   end
 
   def call
-    JWT.encode(user_id: user.id) if user
+    JsonWebToken.encode(user.serializable_hash) if user
   end
 
 
@@ -16,10 +16,10 @@ class AuthenticateUser
   attr_accessor :email, :password
 
   def user
-    user = User.find_by(email: email)
-    return user if user && user.authenticate(password)
+    @user = User.find_by(email: email)
+    return @user if @user && @user.authenticate(password)
 
-    errors.add :user_authentication, 'invalid credentials'
+    @user ? errors.add(:password, 'The password given is incorrect') : errors.add(:email, 'The email given is incorrect')
     nil
   end
 end
