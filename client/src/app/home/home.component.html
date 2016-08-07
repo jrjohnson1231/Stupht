@@ -1,0 +1,4 @@
+<div class="container">
+  <h1 *ngIf="authService.currentUser" class="page-header">Hey {{ authService.currentUser }}, Welcome to Stupht!</h1>
+  <h1 *ngIf="!authService.currentUser" class="page-header">Welcome to Stupht, Sign Up or Log In!</h1>
+</div>

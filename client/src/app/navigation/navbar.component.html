@@ -1,9 +1,8 @@
 <nav>
   <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">News</a></li>
-    <li><a href="#">Contact</a></li>
-    <li class="nav-right"><a routerLink="/login">Log In</a></li>
-    <li class="nav-right"><a routerLink="/register">Sign Up</a></li>
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home  <span class="glyphicon glyphicon-home"></span></a></li>
+    <li [hidden]="authService.currentUser" class="nav-right"><a routerLink="/login" routerLinkActive="active">Log In  <span class="glyphicon glyphicon-log-in"></span></a></li>
+    <li [hidden]="authService.currentUser" class="nav-right"><a routerLink="/register" routerLinkActive="active">Sign Up  <span class="glyphicon glyphicon-edit"></span></a></li>
+    <li [hidden]="!authService.currentUser" class="nav-right" (click)="logout()"><a routerLink="/">Log Out <span class="glyphicon glyphicon-log-out"></span></a></li>
   </ul>
 </nav>

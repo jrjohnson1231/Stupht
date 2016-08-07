@@ -144,3 +144,10 @@ test:
         max_pool_size: 1
   options:
     raise_not_found_error: false
+
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGODB_URI'] %>
+      options:
+        connect_timeout: 15

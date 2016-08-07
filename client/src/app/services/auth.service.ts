@@ -83,6 +83,7 @@ export class AuthService {
   }
 
   logout() {
+    console.log('logging out')
     localStorage.removeItem('id_token');
     this.currentUser = null;
     this.authToken = null;

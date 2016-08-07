@@ -49,5 +49,7 @@
     "typings": "^1.0.4",
     "zone.js": "^0.6.12"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jasmine-core": "^2.4.1"
+  }
 }

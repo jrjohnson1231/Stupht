@@ -1,11 +1,13 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 
 import { PageNotFoundComponent } from './not-found.component';
-import { authenticationRoutes } from './authentication/authentication.routes'
+import { AuthenticationRoutes }  from './authentication/authentication.routes'
+import { HomeComponent }         from './home/home.component' 
 
 
 export const routes: RouterConfig = [
-  ...authenticationRoutes,
+  ...AuthenticationRoutes,
+  { path: '', component: HomeComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 

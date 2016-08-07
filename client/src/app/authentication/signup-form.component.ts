@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm }    from '@angular/forms';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { AuthService }    from '../services/auth.service';
 import { JwtHelper }      from 'angular2-jwt';
@@ -21,7 +22,7 @@ export class SignupFormComponent implements OnInit {
   submitted = false;
   token: string;
 
-  constructor( private authService: AuthService ) { }
+  constructor( private authService: AuthService, private router: Router ) { }
 
   ngOnInit() { }
 
@@ -31,7 +32,7 @@ export class SignupFormComponent implements OnInit {
 
   submitForm() {
     this.authService.register(this.form).subscribe(
-        data => { this.errors = null },
+        data => { this.errors = null; this.router.navigate(['/']) },
         errors => this.errors = errors
       )
     this.active = false;

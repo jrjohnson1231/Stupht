@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to:'application#angular'
+
   namespace :api do
     post 'authenticate', to: 'authentication#authenticate'
     post 'register', to: 'authentication#register'
