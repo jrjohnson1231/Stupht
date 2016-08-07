@@ -32,7 +32,5 @@ module Stupht
   		  g.orm :mongoid
   	end
 
-    # Load JWT from lib path
-    config.autoload_paths << Rails.root.join('lib')
   end
 end
