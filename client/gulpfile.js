@@ -32,7 +32,6 @@ gulp.task('compile', ['lint'], function () {
 // Copy all assets that are not Typescript files
 gulp.task("copy:assets", function () {
   return gulp.src(["src/**/*", "!**/*.ts"])
-    .pipe(watch(["src/**/*", "!**/*.ts"]))
     .pipe(gulp.dest("dist"));
 });
 
@@ -65,10 +64,6 @@ gulp.task('lint', function() {
 // Start a local server in base directory
 gulp.task('serve', function() {
   // Add proxy as server middleware
-  var port = process.env.PORT || 3000
-  bsConfig.server.middleware = [
-      proxyMiddleware('/api', { target: 'http://localhost:' + port })
-    ]
 
   browserSync.init(bsConfig);
   // Watches for changes in css files, grabs the files, pipes them to browsersync stream
@@ -86,8 +81,48 @@ gulp.task('watch:ts', ['compile'], function() {
   gulp.watch(['typings/index.d.ts', 'src/**/*.ts'], ['compile']);
 });
 
+gulp.task("watch:assets", function () {
+  return gulp.src(["src/**/*", "!**/*.ts"])
+    .pipe(watch(["src/**/*", "!**/*.ts"]))
+    .pipe(gulp.dest("dist"));
+});
+
+gulp.task("watch:libs", function () {
+  return gulp.src([
+      'core-js/client/shim.min.js*',
+      'systemjs/dist/system-polyfills.js*',
+      'systemjs/dist/system.src.js*',
+      'reflect-metadata/Reflect.js*',
+      'rxjs/**',
+      'zone.js/dist/**',
+      '@angular/**',
+      'ng2-bootstrap/**',
+      'moment/**',
+      'angular2-jwt/**'
+      ], { cwd: "node_modules/**" })
+    .pipe(watch([
+      'core-js/client/shim.min.js*',
+      'systemjs/dist/system-polyfills.js*',
+      'systemjs/dist/system.src.js*',
+      'reflect-metadata/Reflect.js*',
+      'rxjs/**',
+      'zone.js/dist/**',
+      '@angular/**',
+      'ng2-bootstrap/**',
+      'moment/**',
+      'angular2-jwt/**'
+      ], { cwd: "node_modules/**" }))
+    .pipe(gulp.dest("dist/lib"));
+});
+
 // Launch Rails and Angular apps together
 gulp.task('serve:full-stack', ['rails', 'serve']);
 
-gulp.task('build', ['copy:libs', 'copy:assets', 'watch:ts']);
+gulp.task('jasmine', function() {
+  
+});
+
+gulp.task('build', ['copy:libs', 'copy:assets', 'compile']);
+gulp.task('test', ['compile', 'watch', 'jasmine'])
+gulp.task('watch', ['watch:ts', 'watch:assets', 'watch:libs'])
 gulp.task('default', ['build', 'serve']);
