@@ -1,8 +1,9 @@
 <nav>
   <ul>
     <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home  <span class="glyphicon glyphicon-home"></span></a></li>
-    <li [hidden]="authService.currentUser" class="nav-right"><a routerLink="/login" routerLinkActive="active">Log In  <span class="glyphicon glyphicon-log-in"></span></a></li>
-    <li [hidden]="authService.currentUser" class="nav-right"><a routerLink="/register" routerLinkActive="active">Sign Up  <span class="glyphicon glyphicon-edit"></span></a></li>
-    <li [hidden]="!authService.currentUser" class="nav-right" (click)="logout()"><a routerLink="/">Log Out  <span class="glyphicon glyphicon-log-out"></span></a></li>
+    <li *ngIf="!authService.currentUser" class="nav-right"><a routerLink="/login" routerLinkActive="active">Log In  <span class="glyphicon glyphicon-log-in"></span></a></li>
+    <li *ngIf="!authService.currentUser" class="nav-right"><a routerLink="/register" routerLinkActive="active">Sign Up  <span class="glyphicon glyphicon-edit"></span></a></li>
+    <li *ngIf="authService.currentUser" class="nav-right" (click)="logout()"><a routerLink="/">Log Out  <span class="glyphicon glyphicon-log-out"></span></a></li>
+    <li *ngIf="authService.currentUser" class="nav-right"><a [routerLink]="['/users', authService.currentUser ? authService.currentUser.id : 'none']">My Profile  <span class="glyphicon glyphicon-user"></span></a></li>
   </ul>
 </nav>

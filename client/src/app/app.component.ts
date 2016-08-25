@@ -2,6 +2,7 @@ import { Component, OnInit }  from '@angular/core';
 import { ROUTER_DIRECTIVES }  from '@angular/router';
 
 import { AuthService }        from './services/auth.service'
+import { UserService }        from './services/user.service'
 import { LoginFormComponent } from './authentication/login-form.component';
 import { SignupFormComponent } from './authentication/signup-form.component';
 import { NavbarComponent }    from './navigation/navbar.component';
@@ -16,7 +17,8 @@ import './rxjs-operators';
   <router-outlet></router-outlet>
   `,
   providers:  [
-    AuthService
+    AuthService,
+    UserService
   ],
   directives: [ROUTER_DIRECTIVES, NavbarComponent]
 })
@@ -26,5 +28,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getToken();
+
+    // If there is a user renew their token
+    if (this.authService.currentUser) {
+      this.authService.renew();
+    }
   }
 }

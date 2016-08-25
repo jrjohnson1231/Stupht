@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     post 'authenticate', to: 'authentication#authenticate'
     post 'register', to: 'authentication#register'
+    post 'renew', to: 'authenticate#renew'
     get 'confirm', to: 'authentication#confirm'
 
     namespace :v1 do

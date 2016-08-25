@@ -29,14 +29,14 @@ export class AuthService {
     this.setUser();
   }
 
-  login(credentials) {
+  login(credentials): Observable<any> {
     let body = JSON.stringify(credentials)
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
     let observable = this.http.post(this.loginUrl, body, options).share()
-    .map(this.extractData)
-    .catch(this.handleError)
+                      .map(this.extractData)
+                      .catch(this.handleError)
 
     observable.subscribe(
         data => {
@@ -47,6 +47,7 @@ export class AuthService {
         },
         error => { }
       )
+
     return observable
   }
 
@@ -56,8 +57,8 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
 
     let observable = this.http.post(this.registerUrl, body, options).share()
-    .map(this.extractData)
-    .catch(this.handleError)
+                       .map(this.extractData)
+                       .catch(this.handleError)
 
     observable.subscribe(
         data => {
@@ -68,8 +69,11 @@ export class AuthService {
         },
         error => { }
       )
+
     return observable
   }
+
+  renew() {}
 
   confirm() {
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -101,5 +105,6 @@ export class AuthService {
     if (this.authToken) {
       this.currentUser = this.jwtHelper.decodeToken(this.authToken);
     }
+    console.log('Current user is', this.currentUser);
   }
 }

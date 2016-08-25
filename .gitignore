@@ -20,4 +20,6 @@ client/dist/*
 # Ignore Byebug command history file.
 .byebug_history
 
+# Other files
+Gemfile.lock
 *~

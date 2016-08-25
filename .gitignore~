@@ -8,8 +8,8 @@
 /.bundle
 
 # Ignore node modules and build
-client/node_modules
-client/dist
+client/node_modules/*
+client/dist/*
 
 # Ignore all logfiles and tempfiles.
 /log/*

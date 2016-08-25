@@ -24,6 +24,9 @@ class Api::AuthenticationController < ApplicationController
     end
   end
 
+  def renew
+  end
+
   # Confirms that JWT is valid by returning current user
   def confirm
     render json: @current_user.to_json
