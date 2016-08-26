@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService }       from '../services/auth.service';
       
 @Component({
-  moduleId: module.id,
   selector: 'stft-navbar',
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.css']

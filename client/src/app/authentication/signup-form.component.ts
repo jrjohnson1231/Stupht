@@ -10,7 +10,6 @@ import { JwtHelper }      from 'angular2-jwt';
 import { MapToIterablePipe }  from '../pipes/map-to-iterable.pipe';
  
 @Component({
-  moduleId: module.id,
   selector: 'stft-signup-form',
   templateUrl: 'signup-form.component.html',
   pipes: [MapToIterablePipe]

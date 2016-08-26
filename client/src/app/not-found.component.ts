@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'stft-not-found',
   template: `
-    <h2>Page Not Found</h2>
+    <div class="container">
+      <h2>Page Not Found</h2>
+    </div>
     `
 })
 
