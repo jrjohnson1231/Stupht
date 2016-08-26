@@ -101,7 +101,7 @@ gulp.task('watch:sass', function () {
 });
 
 gulp.task("watch:assets", function () {
-  return gulp.src(["src/**/*", "!**/*.ts"])
+  return gulp.src(["src/**/*", "!**/*.ts", "!src/**/*.scss"])
     .pipe(watch(["src/**/*", "!**/*.ts", "!src/**/*.scss"]))
     .pipe(gulp.dest("dist"));
 });
@@ -127,7 +127,6 @@ gulp.task("watch:libs", function () {
       'rxjs/**',
       'zone.js/dist/**',
       '@angular/**',
-      'ng2-bootstrap/**',
       'moment/**',
       'angular2-jwt/**'
       ], { cwd: "node_modules/**" }))

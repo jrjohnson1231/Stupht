@@ -1,5 +1,4 @@
 import { Component, OnInit }  from '@angular/core';
-import { ROUTER_DIRECTIVES }  from '@angular/router';
 
 import { AuthService }        from './services/auth.service';
 import { UserService }        from './services/user.service';
@@ -17,13 +16,7 @@ import './rxjs-operators';
   template: `
   <stft-navbar></stft-navbar>
   <router-outlet></router-outlet>
-  `,
-  providers:  [
-    AuthService,
-    PostService,
-    UserService
-  ],
-  directives: [ROUTER_DIRECTIVES, NavbarComponent]
+  `
 })
 
 export class AppComponent implements OnInit {
