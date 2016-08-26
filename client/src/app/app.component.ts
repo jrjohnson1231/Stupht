@@ -1,8 +1,10 @@
 import { Component, OnInit }  from '@angular/core';
 import { ROUTER_DIRECTIVES }  from '@angular/router';
 
-import { AuthService }        from './services/auth.service'
-import { UserService }        from './services/user.service'
+import { AuthService }        from './services/auth.service';
+import { UserService }        from './services/user.service';
+import { PostService }        from './services/post.service';
+
 import { LoginFormComponent } from './authentication/login-form.component';
 import { SignupFormComponent } from './authentication/signup-form.component';
 import { NavbarComponent }    from './navigation/navbar.component';
@@ -18,6 +20,7 @@ import './rxjs-operators';
   `,
   providers:  [
     AuthService,
+    PostService,
     UserService
   ],
   directives: [ROUTER_DIRECTIVES, NavbarComponent]

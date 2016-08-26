@@ -3,9 +3,11 @@ var browserSync = require('browser-sync');
 var bsConfig = require('./bs-config.json')
 var del = require('del');
 var exec = require('child_process').exec;
+var historyApiFallback = require('connect-history-api-fallback');
 var merge = require('merge2')
 var plumber = require('gulp-plumber');
 var proxyMiddleware = require('http-proxy-middleware');
+var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var tscConfig = require('./tsconfig.json');
@@ -31,7 +33,7 @@ gulp.task('compile', ['lint'], function () {
 
 // Copy all assets that are not Typescript files
 gulp.task("copy:assets", function () {
-  return gulp.src(["src/**/*", "!**/*.ts"])
+  return gulp.src(["src/**/*", "!**/*.ts", "!src/**/*.scss"])
     .pipe(gulp.dest("dist"));
 });
 
@@ -52,6 +54,14 @@ gulp.task("copy:libs", function () {
     .pipe(gulp.dest("dist/lib"));
 });
 
+gulp.task('sass', function () {
+ return gulp.src('src/**/*.scss')
+  .pipe(sourcemaps.init())
+  .pipe(sass().on('error', sass.logError))
+  .pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest('dist'));
+});
+
 gulp.task('lint', function() {
   return gulp.src("src/app/**/*.ts")
   .pipe(tslint({
@@ -66,7 +76,8 @@ gulp.task('serve', function() {
   // Add proxy as server middleware
   var port = process.env.PORT || 3000;
   bsConfig.middleware = [
-    proxyMiddleware('/api', { target: 'http://localhost:' + port })
+    proxyMiddleware('/api', { target: 'http://localhost:' + port }),
+    historyApiFallback()
     ]
 
   browserSync.init(bsConfig);
@@ -85,9 +96,13 @@ gulp.task('watch:ts', ['compile'], function() {
   gulp.watch(['typings/index.d.ts', 'src/**/*.ts'], ['compile']);
 });
 
+gulp.task('watch:sass', function () {
+  gulp.watch('./src/**/*.scss', ['sass']);
+});
+
 gulp.task("watch:assets", function () {
   return gulp.src(["src/**/*", "!**/*.ts"])
-    .pipe(watch(["src/**/*", "!**/*.ts"]))
+    .pipe(watch(["src/**/*", "!**/*.ts", "!src/**/*.scss"]))
     .pipe(gulp.dest("dist"));
 });
 
@@ -126,7 +141,7 @@ gulp.task('jasmine', function() {
   
 });
 
-gulp.task('build', ['copy:libs', 'copy:assets', 'compile']);
+gulp.task('build', ['copy:libs', 'copy:assets', 'compile', 'sass']);
 gulp.task('test', ['compile', 'watch', 'jasmine'])
-gulp.task('watch', ['watch:ts', 'watch:assets', 'watch:libs'])
+gulp.task('watch', ['watch:ts', 'watch:sass', 'watch:assets', 'watch:libs'])
 gulp.task('default', ['serve', 'watch']);

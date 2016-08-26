@@ -8,7 +8,7 @@ import { HomeComponent }         from './home/home.component'
 
 export const routes: RouterConfig = [
   ...AuthenticationRoutes,
-  ...UserRoutes
+  ...UserRoutes,
   { path: '', component: HomeComponent},
   { path: '**', component: PageNotFoundComponent }
 ];

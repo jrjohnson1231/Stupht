@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     get 'confirm', to: 'authentication#confirm'
 
     namespace :v1 do
-      resources :users, :posts
+      resources :users do
+        resources :posts
+      end
     end
   end
 

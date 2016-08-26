@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Mongoid for MongoDB
-gem 'mongoid', git: 'https://github.com/estolfo/mongoid.git'
+gem 'mongoid', git: 'http://github.com/estolfo/mongoid.git'
 
 # Use jwts for authentication
 gem 'jwt'

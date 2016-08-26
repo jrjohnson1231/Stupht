@@ -40,7 +40,6 @@ export class AuthService {
 
     observable.subscribe(
         data => {
-          console.log('saving user')
           this.authToken = data.auth_token || '';
           localStorage.setItem('id_token', this.authToken)
           this.setUser();
@@ -62,7 +61,6 @@ export class AuthService {
 
     observable.subscribe(
         data => {
-          console.log('saving user')
           this.authToken = data.auth_token || '';
           localStorage.setItem('id_token', this.authToken)
           this.setUser();
@@ -87,7 +85,6 @@ export class AuthService {
   }
 
   logout() {
-    console.log('logging out')
     localStorage.removeItem('id_token');
     this.currentUser = null;
     this.authToken = null;

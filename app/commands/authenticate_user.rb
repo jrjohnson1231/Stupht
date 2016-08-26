@@ -7,7 +7,8 @@ class AuthenticateUser
   end
 
   def call
-    JsonWebToken.encode(user.serializable_hash) if user
+    token_attributes = user.serializable_hash.slice("name", "email", "id") if user
+    JsonWebToken.encode(token_attributes) if user
   end
 
 
