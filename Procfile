@@ -1,3 +1,3 @@
 {
-  web: npm run build && rails s
+  web: rails s
 }
