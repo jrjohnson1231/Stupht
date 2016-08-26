@@ -25,24 +25,14 @@
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.6",
     "sass-loader": "^4.0.0",
-    "zone.js": "0.6.12"
-  },
-  "devDependencies": {
+    "zone.js": "0.6.12",
+
     "angular2-template-loader": "^0.4.0",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
-    "http-proxy-middleware": "^0.17.1",
-    "jasmine-core": "^2.4.1",
-    "karma": "^0.13.22",
-    "karma-jasmine": "^0.3.8",
-    "karma-phantomjs-launcher": "^1.0.0",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.7.0",
-    "null-loader": "^0.1.1",
-    "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
@@ -52,5 +42,16 @@
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.14.0"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.17.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.7.0",
+    "null-loader": "^0.1.1",
+    "phantomjs-prebuilt": "^2.1.7"
   }
 }
