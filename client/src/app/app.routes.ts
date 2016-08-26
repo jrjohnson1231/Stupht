@@ -1,19 +1,22 @@
-import { provideRouter, RouterConfig }  from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { PageNotFoundComponent } from './not-found.component';
-import { AuthenticationRoutes }  from './authentication/authentication.routes'
-import { UserRoutes } from './user/user.routes'
+import { authenticationRoutes }  from './authentication/authentication.routes'
+import { userRoutes }            from './user/user.routes'
 import { HomeComponent }         from './home/home.component' 
 
 
-export const routes: RouterConfig = [
-  ...AuthenticationRoutes,
-  ...UserRoutes,
+export const appRoutes = [
+  ...authenticationRoutes,
+  ...userRoutes,
   { path: '', component: HomeComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
-export const appRouterProviders = [
-  provideRouter(routes)
+export const appRoutingProviders: any[] = [
 ];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+
 

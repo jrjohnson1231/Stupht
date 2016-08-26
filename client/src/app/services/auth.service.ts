@@ -12,7 +12,7 @@ export class AuthService {
 
   jwtHelper = new JwtHelper();
 
-  currentUser = null;
+  currentUser: any = null;
 
   loginUrl: string = 'api/authenticate';
   registerUrl: string = 'api/register';
@@ -29,7 +29,7 @@ export class AuthService {
     this.setUser();
   }
 
-  login(credentials): Observable<any> {
+  login(credentials: any): Observable<any> {
     let body = JSON.stringify(credentials)
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -50,7 +50,7 @@ export class AuthService {
     return observable
   }
 
-  register(credentials): Observable<any> {
+  register(credentials: any): Observable<any> {
     let body = JSON.stringify(credentials)
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
