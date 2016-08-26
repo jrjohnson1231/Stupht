@@ -21,6 +21,5 @@ client/dist/*
 .byebug_history
 
 # Other files
-Gemfile.lock
 *~
 vendor/*
