@@ -96,8 +96,8 @@ gulp.task('watch:ts', ['compile'], function() {
   gulp.watch(['typings/index.d.ts', 'src/**/*.ts'], ['compile']);
 });
 
-gulp.task('watch:sass', function () {
-  gulp.watch('./src/**/*.scss', ['sass']);
+gulp.task('watch:sass', ['sass'], function () {
+  gulp.watch('src/**/*.scss', ['sass']);
 });
 
 gulp.task("watch:assets", function () {
