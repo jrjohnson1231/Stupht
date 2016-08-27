@@ -15,7 +15,7 @@ import './rxjs-operators';
   selector: 'stft-app',
   template: `
   <stft-navbar></stft-navbar>
-  <router-outlet></router-outlet>,
+  <router-outlet></router-outlet>
   `,
   directives: [NavbarComponent]
 })
