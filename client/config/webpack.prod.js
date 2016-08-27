@@ -9,6 +9,14 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
+  module: {
+    loaders: [
+      {
+        test: /\.ts$/, loader: "strip-loader?strip[]=console.log"
+      }
+    ]
+  },
+  
   output: {
     path: helpers.root('dist'),
     publicPath: '/',
