@@ -29,8 +29,8 @@ module Stupht
 
   	# Set Mongoid as default orm
   	config.generators do |g|
-  		  g.orm :mongoid
-  	end
+      g.orm :mongoid
+    end
 
     # Load JWT from lib path
     config.eager_load_paths << Rails.root.join('lib')

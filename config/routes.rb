@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root to:'application#angular'
 
   namespace :api do
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
     get 'confirm', to: 'authentication#confirm'
 
     namespace :v1 do
+      mount ActionCable.server => '/cable'
       resources :users do
         resources :posts
       end

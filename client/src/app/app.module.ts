@@ -11,6 +11,7 @@ import { routing, appRoutingProviders }  from './app.routes';
 import { AuthService }   from './services/auth.service';
 import { UserService }   from './services/user.service';
 import { PostService }   from './services/post.service';
+//import { CableService }  from './services/cable.service';
 
 import { NavbarComponent }  from './navigation/navbar.component';
 

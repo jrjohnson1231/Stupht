@@ -18,11 +18,11 @@ export class AuthService {
   registerUrl: string = 'api/register';
   confirmUrl: string = 'api/confirm'
 
-  // JWT used to authenticate requests
-  authToken: string;
-
   // store the URL so we can redirect after logging in
   redirectUrl: string;
+
+  // JWT used to authenticate requests
+  authToken: string;
 
   getToken() {
     this.authToken = localStorage.getItem('id_token');
