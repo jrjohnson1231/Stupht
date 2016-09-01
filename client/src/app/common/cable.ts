@@ -43,6 +43,7 @@ export class Cable {
         } else {
           if (data.type != 'ping') {
             alert('received from cable' + data.identifier);
+            console.log(data);
           }
         }
       }

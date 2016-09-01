@@ -24,6 +24,7 @@ gem 'simple_command'
 # Serialize json
 gem 'active_model_serializers'
 
+gem 'redis'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
