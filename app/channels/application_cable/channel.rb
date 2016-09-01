@@ -7,7 +7,6 @@ module ApplicationCable
         puts params
         headers = {'Authorization' => params["id_token"]}
         @current_user = AuthorizeApiRequest.call(headers).result
-        puts @current_user
       end
   end
 end

@@ -31,13 +31,14 @@ export class Cable {
   private makeObservable() {
     this.observable = Observable.create((observer: Observer<any>) => {
       this.socket.onopen = () => {
-        alert('Socket opened!');
+        console.log('socket opened!');
         this.subscribeToChannel();
       };
 
       this.socket.onmessage = (packet) => {
         let data = JSON.parse(packet.data)
         if (data.type == undefined) {
+          console.log(data);
           observer.next(data);
         } else {
           if (data.type != 'ping') {

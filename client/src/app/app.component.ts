@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
     if (process.env.ENV === 'production') {
       url = location.origin.replace(/^http/, 'ws') + '/api/v1/cable';
     } else {
-      url = 'ws://localhost:3000/api/v1/cable?id_token=';
+      url = 'ws://localhost:3000/api/v1/cable';
     }
 
     let cable = new Cable(url,
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     })
 
     let stream = cable.subscribe(
-      data => console.log(data),
+      data => {console.log(data); alert(data.message)},
       errors => console.log(errors)
     )
   }
