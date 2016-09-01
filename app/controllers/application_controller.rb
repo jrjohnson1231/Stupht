@@ -7,11 +7,11 @@ class ApplicationController < ActionController::API
 
   def angular
     puts 'rendering angular'
-    puts ChatChannel
+
     ActionCable.server.broadcast(
       "'#{@current_user[:email]}_feed'",
       "Just checking in"
-    )
+    ) if @current_user
 
     render file: "#{Rails.root}/public/index.html"
   end
