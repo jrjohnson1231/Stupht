@@ -42,7 +42,7 @@ export class Cable {
           observer.next(data);
         } else {
           if (data.type != 'ping') {
-            console.log('received from cable', data);
+            alert('received from cable' + data.message);
           }
         }
       }
