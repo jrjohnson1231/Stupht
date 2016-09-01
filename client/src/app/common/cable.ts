@@ -31,6 +31,7 @@ export class Cable {
   private makeObservable() {
     this.observable = Observable.create((observer: Observer<any>) => {
       this.socket.onopen = () => {
+        alert('Socket opened!');
         this.subscribeToChannel();
       };
 

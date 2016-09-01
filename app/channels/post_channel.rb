@@ -2,6 +2,10 @@
 class PostChannel < ApplicationCable::Channel
   def subscribed
     stream_from "'#{params[:email]}_feed'"
+    ActionCable.server.broadcast(
+      "'#{params[:email]}_feed'",
+      "#{params[:email]} is listening"
+    )
   end
 
   def receive(data)

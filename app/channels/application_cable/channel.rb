@@ -5,9 +5,9 @@ module ApplicationCable
     private
       def authenticate_request
         puts params
-        # @current_user = AuthorizeApiRequest.call(request.headers).result
-
-        # render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+        headers = {'Authorization' => params["id_token"]}
+        @current_user = AuthorizeApiRequest.call(headers).result
+        puts @current_user
       end
   end
 end

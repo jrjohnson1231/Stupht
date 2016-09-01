@@ -35,7 +35,14 @@ export class AppComponent implements OnInit {
     if (this.authService.currentUser) {
       this.authService.renew();
     }
-    let url = location.origin.replace(/^http/, 'ws') + '/api/v1/cable'
+
+    let url: string;
+    if (process.env.ENV === 'production') {
+      url = location.origin.replace(/^http/, 'ws') + '/api/v1/cable';
+    } else {
+      url = 'ws://localhost:3000/api/v1/cable?id_token=';
+    }
+
     let cable = new Cable(url,
     {
       channel: "PostChannel",
