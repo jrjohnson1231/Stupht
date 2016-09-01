@@ -7,8 +7,10 @@ import { AuthService } from '../services/auth.service';
   templateUrl: 'home.component.html'
 })
 export class HomeComponent implements OnInit {
-  constructor( private authService: AuthService ) { }
+  messages: string[] = [];
 
+  constructor( private authService: AuthService ) { }
+  
   ngOnInit() {
     if (this.authService.currentUser) {
       let url: string;
@@ -26,7 +28,7 @@ export class HomeComponent implements OnInit {
       })
 
       let stream = cable.subscribe(
-        (data: any) => {console.log(data); alert(data.message)},
+        (data: any) => {console.log(data); this.messages.push(data.message)},
         (errors: any) => console.log(errors)
       )
     }
