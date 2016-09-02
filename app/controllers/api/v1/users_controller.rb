@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+  respond_to? :json
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users

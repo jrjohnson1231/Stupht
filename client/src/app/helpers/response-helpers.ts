@@ -4,7 +4,6 @@ import { Observable }  from 'rxjs/Rx';
 
 
 export function extractData(res: Response) {
-  console.log('extracting data', res.json());
   return res.json();
 }
 

@@ -1,4 +1,5 @@
 class Api::V1::PostsController < ApplicationController
+  respond_to? :json
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
