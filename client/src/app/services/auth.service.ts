@@ -6,6 +6,8 @@ import { Headers, RequestOptions } from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
 
+import { extractData, handleError } from '../helpers/response-helpers'
+
 @Injectable()
 export class AuthService {
   constructor (private http: Http, private authHttp: AuthHttp) {}
@@ -35,8 +37,8 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
 
     let observable = this.http.post(this.loginUrl, body, options).share()
-                      .map(this.extractData)
-                      .catch(this.handleError)
+                      .map(extractData)
+                      .catch(handleError)
 
     observable.subscribe(
         data => {
@@ -56,8 +58,8 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
 
     let observable = this.http.post(this.registerUrl, body, options).share()
-                       .map(this.extractData)
-                       .catch(this.handleError)
+                       .map(extractData)
+                       .catch(handleError)
 
     observable.subscribe(
         data => {
@@ -88,14 +90,6 @@ export class AuthService {
     localStorage.removeItem('id_token');
     this.currentUser = null;
     this.authToken = null;
-  }
-
-  private extractData(res: Response) {
-    return res.json();
-  }
-
-  private handleError(error: any) {
-    return Observable.throw(error.json().error);
   }
 
   private setUser() {
