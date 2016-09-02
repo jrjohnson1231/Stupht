@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: 'home.component.html'
 })
 export class HomeComponent implements OnInit {
-  messages: string[] = [];
+  messages: string[] = ["Hello"];
 
   constructor( private authService: AuthService ) { }
   
@@ -28,9 +28,12 @@ export class HomeComponent implements OnInit {
       })
 
       let stream = cable.subscribe(
-        (data: any) => {console.log(data); this.messages.push(data.message)},
+        (data: any) => {this.messages.push(data.message); console.log(data, this.messages)},
         (errors: any) => console.log(errors)
       )
+
+      cable.next(JSON.stringify({hello: "world"}));
+      
     }
   }
 

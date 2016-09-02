@@ -6,5 +6,7 @@
     <i class="fa fa-coffee"></i>
   </div>
 
-  {{ messages }}
+  <div *ngFor="let message of messages">
+    {{message}}
+  </div>
 </div>

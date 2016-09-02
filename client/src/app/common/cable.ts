@@ -2,10 +2,11 @@ import { Observable, Observer, Subject, Subscription }  from 'rxjs/Rx';
 
 export class Cable {
   socket: WebSocket;
-  identifier: string;
+  identifier: string = "";
   observable: Observable<any>;
   observer: Observer<any>;
-  subject: Subject<any>
+  subject: Subject<any>;
+  confirmed: boolean = false;
 
   constructor(url: string, identifier: {}) {
     this.identifier = JSON.stringify(identifier);
@@ -31,20 +32,18 @@ export class Cable {
   private makeObservable() {
     this.observable = Observable.create((observer: Observer<any>) => {
       this.socket.onopen = () => {
-        alert('socket opened!');
+        console.log('socket opened!');
         this.subscribeToChannel();
       };
 
       this.socket.onmessage = (packet) => {
         let data = JSON.parse(packet.data)
         if (data.type == undefined) {
-          console.log(data);
           observer.next(data);
-        } else {
-          if (data.type != 'ping') {
-            alert('received from cable' + data.identifier);
-            console.log(data);
-          }
+        } else if (data.type = "confirm_subscription") {
+            this.confirmed = true;
+        } else if (data.type != 'ping') {
+            console.log("Recieved from cable:", data);
         }
       }
     })
@@ -76,7 +75,7 @@ export class Cable {
   }
 
   private sendToChannel(data: Object) {
-    if (this.socket.readyState === WebSocket.OPEN) {
+    if (this.confirmed === true) {
         let cmd = {
           command: 'message',
           identifier: this.identifier,
@@ -84,6 +83,8 @@ export class Cable {
         }
 
         this.socket.send(JSON.stringify(cmd));
+    } else {
+      setTimeout(() => this.sendToChannel(data), 0);
     }
   }
 }
