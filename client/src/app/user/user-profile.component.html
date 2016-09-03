@@ -1,7 +1,16 @@
 <div class="container">
   <h1 class="page-header">{{ user?.name }}</h1>
-  {{ user?.posts }}
-  <div class="logo text-center">
-    <i class="fa "></i>
+  <div class="row">
+    <div class="">
+      <div *ngIf="editable">
+        <span class="clickable"><i class="fa fa-plus"></i> <strong>New Post</strong></span>
+        <stft-new-post-form [user]="user"></stft-new-post-form>
+      </div>
+      <div *ngFor="let post of user?.posts">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.body }}</p>
+        <hr>
+      </div>
+    </div>
   </div>
 </div>

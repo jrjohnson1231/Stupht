@@ -1,5 +1,5 @@
 class Api::AuthenticationController < ApplicationController
-  response_to? :json
+  respond_to? :json
   skip_before_action :authenticate_request, except: [:confirm]
 
   # Authenticates user and returns JWT

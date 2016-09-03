@@ -20,11 +20,9 @@ export class UserService {
 
     let getUrl = this.baseUrl + '/' + user_id;
 
-    let thing = this.authHttp.get(getUrl, options)
+    return this.authHttp.get(getUrl, options)
       .map(extractData)
       .catch(handleError)
-
-    return thing;
   }
 
 }
