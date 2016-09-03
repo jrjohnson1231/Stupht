@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" name="title"
+    [(ngModel)]="post.title" placeholder="Title">
+  </div>
+  <div class="form-group">
+    <label for="body">Body</label>
+    <input type="text" class="form-control" name="body"
+    [(ngModel)]="post.body" placeholder="Body">
+  </div>
+  <button type="submit" class="btn btn-default">Post</button>
+</form>
