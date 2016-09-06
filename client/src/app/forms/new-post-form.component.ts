@@ -41,7 +41,8 @@ export class NewPostFormComponent implements OnInit {
 
   onSubmit() {
     for (let key in this.post) {
-      if (!this.post[key]) {
+      if (!this.post[key] && key != 'id') { 
+        console.log(key);
         this.error = new Error("Woops! Don't leave anything blank!")
         return;
       }
