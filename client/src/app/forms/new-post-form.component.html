@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+<form>
   <div class="form-group">
     <label for="title">Title</label>
     <input type="text" class="form-control" name="title"
@@ -6,8 +6,10 @@
   </div>
   <div class="form-group">
     <label for="body">Body</label>
-    <input type="text" class="form-control" name="body"
-    [(ngModel)]="post.body" placeholder="Body">
+    <textarea rows="5" class="form-control" name="body"
+    [(ngModel)]="post.body" placeholder="Body"></textarea>
   </div>
-  <button type="submit" class="btn btn-default">Post</button>
 </form>
+<button (click)="onSubmit()" class="btn btn-default">Post</button>
+<button (click)="onCancel()" class="btn btn-default">Cancel</button>
+  <span *ngIf="error" class="h5 error">{{ error }}</span>

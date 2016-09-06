@@ -40,7 +40,6 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        exclude: helpers.root('src', 'app'),
         loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap')
       }
     ]

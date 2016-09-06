@@ -28,7 +28,12 @@ export class AuthService {
 
   getToken() {
     this.authToken = localStorage.getItem('id_token');
-    this.setUser();
+
+    if (!this.authToken || this.jwtHelper.isTokenExpired(this.authToken)) {
+      this.logout();
+    } else {
+      this.setUser();
+    }
   }
 
   login(credentials: any): Observable<any> {
