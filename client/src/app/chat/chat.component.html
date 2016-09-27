@@ -1,6 +1,17 @@
-<input type="text" [(ngModel)]="message">
-<button (click)=sendMessage(message)>Send</button>
-
-<div *ngFor="let message of messages">
-  <p>{{message}}</p>
+<div class="container">
+  <h1 class="page-header">Main Feed</h1>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <form class="form-inline">
+        <label for="message">New Message: </label>
+        <input class="form-control" type="text" name="message" [(ngModel)]="message">
+        <button class="btn btn-default" (click)=sendMessage(message)>Send</button>
+      </form>
+      <hr>
+      <div *ngFor="let message of messages">
+        <p>{{ message.user }}: {{ message.message }}</p>
+      </div>
+      <hr>
+    </div>
+  </div>
 </div>

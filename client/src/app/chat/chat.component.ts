@@ -10,7 +10,7 @@ import { Subscription }  from 'rxjs/Rx';
   templateUrl: 'chat.component.html'
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  messages: string[] = [];
+  messages: Object[] = [];
   stream: Subscription;
   cable: Cable;
 

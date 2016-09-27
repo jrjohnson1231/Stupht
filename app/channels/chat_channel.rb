@@ -5,14 +5,20 @@ class ChatChannel < ApplicationCable::Channel
     stream_from "'main_feed'"
     ActionCable.server.broadcast(
       "'main_feed'",
-      "#{params[:email]} is listening"
+      {
+        user: "Channel",
+        message: "#{params[:email]} is listening"
+      }
     )
   end
 
   def receive(data)
     ActionCable.server.broadcast(
       "'main_feed'",
-      data["message"]
+      {
+        user: params[:email],
+        message: data["message"]
+      }
       )
   end
 end
