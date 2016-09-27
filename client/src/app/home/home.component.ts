@@ -12,29 +12,29 @@ export class HomeComponent implements OnInit {
   constructor( private authService: AuthService ) { }
   
   ngOnInit() {
-    if (this.authService.currentUser) {
-      let url: string;
-      if (process.env.ENV === 'production') {
-        url = location.origin.replace(/^http/, 'ws') + '/api/v1/cable';
-      } else {
-        url = 'ws://localhost:3000/api/v1/cable';
-      }
+    // if (this.authService.currentUser) {
+    //   let url: string;
+    //   if (process.env.ENV === 'production') {
+    //     url = location.origin.replace(/^http/, 'ws') + '/api/v1/cable';
+    //   } else {
+    //     url = 'ws://localhost:3000/api/v1/cable';
+    //   }
 
-      let cable = new Cable(url,
-      {
-        channel: "PostChannel",
-        email: this.authService.currentUser.email,
-        id_token: this.authService.authToken
-      })
+    //   let cable = new Cable(url,
+    //   {
+    //     channel: "PostChannel",
+    //     email: this.authService.currentUser.email,
+    //     id_token: this.authService.authToken
+    //   })
 
-      let stream = cable.subscribe(
-        (data: any) => {this.messages.push(data.message); console.log(data, this.messages)},
-        (errors: any) => console.log(errors)
-      )
+    //   let stream = cable.subscribe(
+    //     (data: any) => {this.messages.push(data.message); console.log(data, this.messages)},
+    //     (errors: any) => console.log(errors)
+    //   )
 
-      cable.next(JSON.stringify({hello: "world"}));
+    //   cable.next({hello: "world"});
       
-    }
+    // }
   }
 
   

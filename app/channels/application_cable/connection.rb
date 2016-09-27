@@ -3,7 +3,7 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
-      # self.current_user = User.first.serializable_hash[:email]
+      self.current_user = User.first.serializable_hash[:email]
     end
   end
 end

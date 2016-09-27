@@ -1,5 +1,5 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
-class PostChannel < ApplicationCable::Channel
+class ChatChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "'#{params[:email]}_feed'"
     stream_from "'main_feed'"
@@ -12,7 +12,7 @@ class PostChannel < ApplicationCable::Channel
   def receive(data)
     ActionCable.server.broadcast(
       "'main_feed'",
-      data
+      data["message"]
       )
   end
 end

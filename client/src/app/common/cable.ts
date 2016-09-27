@@ -52,9 +52,9 @@ export class Cable {
         if (data.type == undefined) {
           observer.next(data);
         } else if (data.type = "confirm_subscription") {
-            this.confirmed = true;
+          this.confirmed = true;
         } else if (data.type != 'ping') {
-            console.log("Recieved from cable:", data);
+          console.log("Recieved from cable:", data);
         }
       }
     })
@@ -90,13 +90,13 @@ export class Cable {
   // Helper to send a message to the channel
   private sendToChannel(data: Object) {
     if (this.confirmed === true) {
-        let cmd = {
-          command: 'message',
-          identifier: this.identifier,
-          data: JSON.stringify(data),
-        }
+      let cmd = {
+        command: 'message',
+        identifier: this.identifier,
+        data: JSON.stringify(data),
+      }
 
-        this.socket.send(JSON.stringify(cmd));
+      this.socket.send(JSON.stringify(cmd));
     } else {
       setTimeout(() => this.sendToChannel(data), 0);
     }
