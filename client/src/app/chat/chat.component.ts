@@ -41,10 +41,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.stream.unsubscribe();
+    if (this.stream) {
+      this.stream.unsubscribe();
+    }
   }
 
   sendMessage(message: string) {
-    this.cable.next({message});
+    if (this.cable) {
+      this.cable.next({message});
+    }
   }
 }
