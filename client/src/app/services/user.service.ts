@@ -25,4 +25,15 @@ export class UserService {
       .catch(handleError)
   }
 
+  getAll() {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    let getUrl = this.baseUrl
+
+    return this.authHttp.get(getUrl, options)
+      .map(extractData)
+      .catch(handleError)
+  }
+
 }

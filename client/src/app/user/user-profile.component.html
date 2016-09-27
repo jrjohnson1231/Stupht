@@ -6,13 +6,7 @@
         <stft-new-post-form [user]="user" (onFinished)=onAdded($event)></stft-new-post-form>
         <hr>
       </div>
-<!--       <div *ngIf="editable && !adding">
-        <span class="clickable" (click)="adding = !adding"><i class="fa fa-plus"></i> <strong>New Post</strong></span>
-        <hr>
-      </div>
-      <div *ngIf="editable">
-        <stft-new-post-form *ngIf="adding" [user]="user" (onFinished)=onFinished($event)></stft-new-post-form>
-      </div> -->
+      
       <div *ngFor="let post of user?.posts">
         <div *ngIf="editing != post.id">
           <span class="h3" >{{ post.title }}</span> <i (click)=deletePost(post) class="clickable fa fa-trash pull-right"></i> <i (click)=editPost(post) class="clickable fa fa-edit pull-right"></i>

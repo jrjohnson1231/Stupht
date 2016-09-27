@@ -8,6 +8,11 @@ import { Observable }     from 'rxjs/Observable';
 
 import { extractData, handleError } from '../helpers/response-helpers'
 
+/* Authentication Service
+   Handles all login, logout, and registration
+   Also handles current user and all JWT handling through localStorage
+*/
+
 @Injectable()
 export class AuthService {
   constructor (private http: Http, private authHttp: AuthHttp) {}
@@ -26,6 +31,7 @@ export class AuthService {
   // JWT used to authenticate requests
   authToken: string;
 
+  // Get token from localStorage
   getToken() {
     this.authToken = localStorage.getItem('id_token');
 
@@ -36,6 +42,7 @@ export class AuthService {
     }
   }
 
+  // Login and return observable as well as save JWT
   login(credentials: any): Observable<any> {
     let body = JSON.stringify(credentials)
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -57,6 +64,7 @@ export class AuthService {
     return observable
   }
 
+  // Create new account and save JWT
   register(credentials: any): Observable<any> {
     let body = JSON.stringify(credentials)
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -80,6 +88,7 @@ export class AuthService {
 
   renew() {}
 
+  // Helper api endpoint to confirm that JWT is valid
   confirm() {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -91,12 +100,14 @@ export class AuthService {
       );
   }
 
+  // Logout and remove JWT from localStorage
   logout() {
     localStorage.removeItem('id_token');
     this.currentUser = null;
     this.authToken = null;
   }
 
+  // Set current user base on JWT
   private setUser() {
     if (this.authToken) {
       this.currentUser = this.jwtHelper.decodeToken(this.authToken);
